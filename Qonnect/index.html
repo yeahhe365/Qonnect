@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Qonnect</title>
+  <!-- 适配移动端视口 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- 引入 qrcode 和 jsQR 库 -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+
+  <!-- 引入 Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- 引入全局样式（style.css） -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 离线提示条 -->
+<div id="offlineBanner">当前处于离线状态，部分功能不可用</div>
+
+<div class="container">
+  <h1 style="text-align:center; margin-bottom: 16px; color: #1976d2; font-size:1.5rem;">
+    Qonnect
+  </h1>
+  
+  <div class="row">
+    <!-- 左栏：输入 & 外观设置 -->
+    <div class="col-left">
+      <!-- 数据输入（常规类型） -->
+      <div class="section">
+        <h2>数据输入</h2>
+        <div class="form-group">
+          <label for="dataType">常规数据类型</label>
+          <select id="dataType">
+            <option value="text">文本</option>
+            <option value="url">URL</option>
+            <option value="wifi">WIFI</option>
+            <option value="email">邮件</option>
+          </select>
+        </div>
+
+        <!-- 文本 -->
+        <div class="form-group" id="textWrapper">
+          <label>文本内容 (可含中文英文)</label>
+          <textarea id="textInput" placeholder="如：你好，hello" rows="1"></textarea>
+        </div>
+        <!-- URL -->
+        <div class="form-group hidden" id="urlWrapper">
+          <label>网址链接</label>
+          <input type="text" id="urlInput" placeholder="如 https://example.com">
+        </div>
+        <!-- WIFI -->
+        <div class="form-group hidden" id="wifiWrapper">
+          <label>WIFI SSID</label>
+          <input type="text" id="wifiSsid" placeholder="路由器名称">
+          <label>WIFI 密码</label>
+          <input type="text" id="wifiPassword" placeholder="路由器密码">
+        </div>
+        <!-- Email -->
+        <div class="form-group hidden" id="emailWrapper">
+          <label>收件人地址</label>
+          <input type="text" id="emailAddress" placeholder="如 name@example.com">
+          <label>邮件主题</label>
+          <input type="text" id="emailSubject" placeholder="可选">
+        </div>
+      </div>
+
+      <!-- 外观设置 -->
+      <div class="section">
+        <h2>外观设置</h2>
+        <!-- 将“二维码尺寸 + 前景色 + 背景色”放在同一行 -->
+        <div class="form-group color-and-size-row">
+          <div>
+            <label for="qrSize">二维码尺寸(px)</label>
+            <input type="number" id="qrSize" min="100" max="800" value="200">
+          </div>
+          <div>
+            <label for="colorDark">前景色</label>
+            <input type="color" id="colorDark" value="#000000">
+          </div>
+          <div>
+            <label for="colorLight">背景色</label>
+            <input type="color" id="colorLight" value="#ffffff">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右栏：二维码 & 解码 -->
+    <div class="col-right">
+      <!-- 实时二维码 & 下载 -->
+      <div class="section">
+        <h2>二维码 (实时生成)</h2>
+        <div id="qrcode">
+          <canvas id="qrcodeCanvas"></canvas>
+        </div>
+        <button class="btn" id="downloadBtn">
+          <span class="material-icons">download</span>
+          下载二维码
+        </button>
+      </div>
+
+      <!-- 解码区域：合并的拖拽 + 选择文件 + 粘贴 -->
+      <div class="section">
+        <h2>解码二维码</h2>
+        <div id="decodeZone">
+          <input type="file" id="decodeFile" accept="image/*">
+          <p style="margin: 0;">拖拽图片到此 或 点击此区域选择文件 (也可 Ctrl+V 粘贴)</p>
+        </div>
+        <canvas id="decode-canvas"></canvas>
+        <div id="decodeResult"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 清空本地缓存 -->
+  <div class="clear-storage">
+    <button class="btn" id="clearStorageBtn">
+      <span class="material-icons">delete</span>
+      清空本地缓存
+    </button>
+  </div>
+</div>
+
+<!-- 入口脚本（或其他脚本），示例采用ES Module写法 -->
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
