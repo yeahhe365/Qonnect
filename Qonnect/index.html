@@ -5,7 +5,18 @@
   <title>Qonnect</title>
   <!-- 适配移动端视口 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
+  <!-- ===== 引入 favicon 开始 ===== -->
+  <!-- 建议同时加上 rel="icon" 和 rel="shortcut icon"，以兼容所有浏览器 -->
+  <link rel="apple-touch-icon" sizes="180x180" href="icon/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="icon/favicon_io/site.webmanifest">
+  <!-- 最关键，用于浏览器Tab的小图标；同时使用 icon 和 shortcut icon -->
+  <link rel="icon" href="icon/favicon_io/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="icon/favicon_io/favicon.ico" type="image/x-icon">
+  <!-- ===== 引入 favicon 结束 ===== -->
+
   <!-- 引入 qrcode 和 jsQR 库 -->
   <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
@@ -22,8 +33,9 @@
 <div id="offlineBanner">当前处于离线状态，部分功能不可用</div>
 
 <div class="container">
+  <!-- 在标题中用 logo 替代原先的“Q” -->
   <h1 style="text-align:center; margin-bottom: 16px; color: #1976d2; font-size:1.5rem;">
-    Qonnect
+    <img src="icon/logo.png" alt="Qonnect" class="title-logo">onnect
   </h1>
   
   <div class="row">
